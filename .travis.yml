@@ -31,6 +31,9 @@ addons:
       #- python-libxml2
       #- g++
       #- xutils
+      # pulse module
+      - intltool
+      - libsndfile1-dev
 
 env:
   - CONF_FLAGS=""
@@ -42,3 +45,4 @@ script:
   - ./configure $CONF_FLAGS
   - make CFLAGS="-O2 -Wall -Wwrite-strings -Werror"
   - make distcheck
+  - make -C sesman/chansrv/pulse -f Makefile.travis test
