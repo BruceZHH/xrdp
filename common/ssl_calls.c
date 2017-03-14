@@ -843,7 +843,7 @@ valiidate_certificate(const char *certificate_path, const char *privkey_path)
 {
     int rv = 0;
     SSL_CTX *ctx;
-    ctx = SSL_CTX_new(SSL23_server_method());
+    ctx = SSL_CTX_new(SSLv23_server_method());
 
     rv += SSL_CTX_use_RSAPrivateKey_file(ctx, privkey_path, SSL_FILETYPE_PEM);
     rv += SSL_CTX_use_certificate_chain_file(ctx, certificate_path);
