@@ -839,7 +839,7 @@ ssl_get_cipher_name(const struct ssl_st *ssl)
 
 /*****************************************************************************/
 int
-valiidate_certificate(const char *certificate_path, const char *privkey_path)
+validate_certificate(const char *certificate_path, const char *privkey_path)
 {
     int rv = 0;
     SSL_CTX *ctx;
