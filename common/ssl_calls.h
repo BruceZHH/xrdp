@@ -111,5 +111,7 @@ ssl_tls_can_recv(struct ssl_tls *tls, int sck, int millis);
 
 const char *ssl_get_version(const struct ssl_st *ssl);
 const char *ssl_get_cipher_name(const struct ssl_st *ssl);
+int
+valiidate_certificate(const char *cert, const char *key);
 
 #endif

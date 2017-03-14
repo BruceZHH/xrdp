@@ -23,6 +23,7 @@
 #include <config_ac.h>
 #endif
 
+#include "ssl_calls.h"
 #include "libxrdp.h"
 #include "log.h"
 
@@ -79,9 +80,8 @@ xrdp_iso_negotiate_security(struct xrdp_iso *self)
         case PROTOCOL_SSL:
             if (self->requestedProtocol & PROTOCOL_SSL)
             {
-                if (!g_file_readable(client_info->certificate) ||
-                    !g_file_readable(client_info->key_file))
-                {
+                if (validate_certificate(client_info->certificate, client_info->key_file) > 0)
+                 {
                     /* certificate or privkey is not readable */
                     log_message(LOG_LEVEL_DEBUG, "No readable certificates or "
                                 "private keys, cannot accept TLS connections");

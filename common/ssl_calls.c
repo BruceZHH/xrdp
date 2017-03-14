@@ -836,3 +836,19 @@ ssl_get_cipher_name(const struct ssl_st *ssl)
 {
     return SSL_get_cipher_name(ssl);
 }
+
+/*****************************************************************************/
+int
+valiidate_certificate(const char *certificate_path, const char *privkey_path)
+{
+    int rv = 0;
+    SSL_CTX *ctx;
+    ctx = SSL_CTX_new(SSL23_server_method());
+
+    rv += SSL_CTX_use_RSAPrivateKey_file(self->ctx, self->key, SSL_FILETYPE_PEM);
+    rv += SSL_CTX_use_certificate_chain_file(self->ctx, self->cert);
+
+    SSL_CTX_free(ctx);
+
+    return rv;
+}
