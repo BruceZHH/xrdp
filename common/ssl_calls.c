@@ -738,7 +738,7 @@ ssl_tls_read(struct ssl_tls *tls, char *data, int length)
              *     SSL_ERROR_WANT_WRITE
              */
             case SSL_ERROR_WANT_READ:
-                g_writeln("ssl_tls_read %s, %d", __FILE__, __LINE);
+                g_writeln("ssl_tls_read %s, %d", __FILE__, __LINE__);
                 g_sck_can_recv(tls->trans->sck, SSL_WANT_READ_WRITE_TIMEOUT);
                 continue;
             case SSL_ERROR_WANT_WRITE:
