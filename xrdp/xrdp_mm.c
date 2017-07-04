@@ -3239,7 +3239,7 @@ server_send_to_channel(struct xrdp_mod *mod, int channel_id,
     {
         if (wm->mm->usechansrv)
         {
-            return 1;
+            return 0;
         }
 
         return libxrdp_send_to_channel(wm->session, channel_id, data, data_len,
