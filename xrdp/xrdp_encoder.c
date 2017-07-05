@@ -66,7 +66,7 @@ xrdp_encoder_create(struct xrdp_mm *mm)
 
     client_info = mm->wm->client_info;
 
-    if (client_info->mcs_connection_type != CONNECTION_TYPE_LAN)
+    if (client_info->mcs_connection_type <= CONNECTION_TYPE_LAN)
     {
         return 0;
     }
