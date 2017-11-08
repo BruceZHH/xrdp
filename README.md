@@ -69,6 +69,26 @@ firewall-cmd --permanent --zone=public --add-port=3389/tcp
 firewall-cmd --reload
 ```
 
+### Xwrapper
+
+Recent major distributions use Xwrapper to separate privileges.
+You might be required to edit `/etc/X11/Xwrapper.config`.
+See distro's README of xrdp package and if editing the file needed,
+
+change the line
+
+```
+allowed_users=console
+```
+
+to
+
+```
+allowed_users=anybody
+```
+
+as distro's README describes.
+
 ## Environment
 
 **xrdp** primarily targets to GNU/Linux. Tested on x86, x86_64, SPARC and
