@@ -1067,7 +1067,7 @@ sound_process_wave_confirm(struct stream *s, int size)
         block_no--;
     }
 
-    log_trace("%s: "
+    log_trace_verbose("%s: "
               "wTimeStamp=%d, "
               "cConfirmedBlockNo=%d, "
               "time_diff=%d, "
