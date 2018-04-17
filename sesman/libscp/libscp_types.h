@@ -38,10 +38,10 @@
 #define SCP_RESOURCE_SHARING_REQUEST_YES 0x01
 #define SCP_RESOURCE_SHARING_REQUEST_NO  0x00
 
-#define SCP_SESSION_TYPE_XVNC    0x00
-#define SCP_SESSION_TYPE_X11RDP  0x01
+#define SCP_SESSION_TYPE_XVNC    0x00 /*  0 */
+#define SCP_SESSION_TYPE_X11RDP  0x0A /* 10 */
 #define SCP_SESSION_TYPE_MANAGE  0x02
-#define SCP_SESSION_TYPE_XORG    0x03
+#define SCP_SESSION_TYPE_XORG    0x14 /* 20 */
 
 /* SCP_GW_AUTHENTICATION can be used when XRDP + sesman act as a gateway
  * XRDP sends this command to let sesman verify if the user is allowed

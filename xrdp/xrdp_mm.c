@@ -36,6 +36,7 @@
 
 #include "xrdp_encoder.h"
 #include "xrdp_sockets.h"
+#include "sesman/libscp/libscp_types.h"
 
 #define LLOG_LEVEL 1
 #define LLOGLN(_level, _args) \
@@ -230,7 +231,7 @@ xrdp_mm_send_login(struct xrdp_mm *self)
     /* select and send X server bpp */
     if (xserverbpp == 0)
     {
-        if (self->code == 20)
+        if (self->code == SCP_SESSION_TYPE_XORG)
         {
             xserverbpp = 24; /* xorgxrdp is always at 24 bpp */
         }
@@ -515,11 +516,12 @@ xrdp_mm_setup_mod2(struct xrdp_mm *self, tui8 *guid)
     {
         if (self->display > 0)
         {
-            if (self->code == 0) /* Xvnc */
+            if (self->code == SCP_SESSION_TYPE_XVNC) /* Xvnc */
             {
                 g_snprintf(text, 255, "%d", 5900 + self->display);
             }
-            else if (self->code == 10 || self->code == 20) /* X11rdp/Xorg */
+            else if (self->code == SCP_SESSION_TYPE_X11RDP ||
+                      self->code == SCP_SESSION_TYPE_XORG)
             {
                 use_uds = 1;
 
@@ -1484,7 +1486,7 @@ access_control(char *username, char *password, char *srv)
             make_stream(out_s);
             init_stream(out_s, 500);
             s_push_layer(out_s, channel_hdr, 8);
-            out_uint16_be(out_s, 4); /*0x04 means SCP_GW_AUTHENTICATION*/
+            out_uint16_be(out_s, SCP_GW_AUTHENTICATION);
             index = g_strlen(username);
             out_uint16_be(out_s, index);
             out_uint8a(out_s, username, index);
@@ -1521,7 +1523,7 @@ access_control(char *username, char *password, char *srv)
                             in_uint16_be(in_s, pAM_errorcode); /* this variable holds the PAM error code if the variable is >32 it is a "invented" code */
                             in_uint16_be(in_s, dummy);
 
-                            if (code != 4) /*0x04 means SCP_GW_AUTHENTICATION*/
+                            if (code != SCP_GW_AUTHENTICATION)
                             {
                                 log_message(LOG_LEVEL_ERROR, "Returned cmd code from "
                                             "sesman is corrupt");

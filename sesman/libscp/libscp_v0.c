@@ -199,7 +199,9 @@ scp_v0s_accept(struct SCP_CONNECTION *c, struct SCP_SESSION **s, int skipVchk)
 
     in_uint16_be(c->in_s, code);
 
-    if (code == 0 || code == 10 || code == 20)
+    if (code == SCP_SESSION_TYPE_XVNC ||
+        code == SCP_SESSION_TYPE_X11RDP ||
+        code == SCP_SESSION_TYPE_XORG)
     {
         session = scp_session_create();
 
@@ -211,17 +213,13 @@ scp_v0s_accept(struct SCP_CONNECTION *c, struct SCP_SESSION **s, int skipVchk)
 
         scp_session_set_version(session, version);
 
-        if (code == 0)
+        switch(code)
         {
-            scp_session_set_type(session, SCP_SESSION_TYPE_XVNC);
-        }
-        else if (code == 10)
-        {
-            scp_session_set_type(session, SCP_SESSION_TYPE_X11RDP);
-        }
-        else if (code == 20)
-        {
-            scp_session_set_type(session, SCP_SESSION_TYPE_XORG);
+            case SCP_SESSION_TYPE_XVNC:
+            case SCP_SESSION_TYPE_X11RDP:
+            case SCP_SESSION_TYPE_XORG:
+                scp_session_set_type(session, code);
+                break;
         }
 
         /* reading username */
