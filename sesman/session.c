@@ -103,13 +103,13 @@ session_get_bydata(const char *name, int width, int height, int bpp, int type,
     /* convert from SCP_SESSION_TYPE namespace to SESMAN_SESSION_TYPE namespace */
     switch (type)
     {
-        case SCP_SESSION_TYPE_XVNC: /* 0 */
+        case SCP_SESSION_TYPE_XVNC:
             type = SESMAN_SESSION_TYPE_XVNC; /* 2 */
             /* Xvnc cannot resize */
             policy = (enum SESMAN_CFG_SESS_POLICY)
                      (policy | SESMAN_CFG_SESS_POLICY_D);
             break;
-        case SCP_SESSION_TYPE_X11RDP: /* 1 */
+        case SCP_SESSION_TYPE_X11RDP:
             type = SESMAN_SESSION_TYPE_X11RDP; /* 1 */
             break;
         case SCP_SESSION_TYPE_XORG:
