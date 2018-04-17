@@ -206,12 +206,12 @@ int inputSession(struct SCP_SESSION *s)
 
     g_printf("session type:\n");
     g_printf("%d: Xvnc\n", SCP_SESSION_TYPE_XVNC);
-    g_printf("%d: x11rdp\n", SCP_SESSION_TYPE_XRDP);
+    g_printf("%d: x11rdp\n", SCP_SESSION_TYPE_X11RDP);
     integer = menuSelect(1);
 
     if (integer == 1)
     {
-        s->type = SCP_SESSION_TYPE_XRDP;
+        s->type = SCP_SESSION_TYPE_X11RDP;
     }
     else
     {

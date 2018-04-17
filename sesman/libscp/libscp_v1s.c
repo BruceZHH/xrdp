@@ -121,7 +121,7 @@ enum SCP_SERVER_STATES_E scp_v1s_accept(struct SCP_CONNECTION *c, struct SCP_SES
 
     in_uint8(c->in_s, sz);
 
-    if ((sz != SCP_SESSION_TYPE_XVNC) && (sz != SCP_SESSION_TYPE_XRDP))
+    if ((sz != SCP_SESSION_TYPE_XVNC) && (sz != SCP_SESSION_TYPE_X11RDP))
     {
         scp_session_destroy(session);
         log_message(LOG_LEVEL_WARNING, "[v1s:%d] connection aborted: unknown session type", __LINE__);

@@ -63,8 +63,8 @@ scp_session_set_type(struct SCP_SESSION *s, tui8 type)
             s->type = SCP_SESSION_TYPE_XVNC;
             break;
 
-        case SCP_SESSION_TYPE_XRDP:
-            s->type = SCP_SESSION_TYPE_XRDP;
+        case SCP_SESSION_TYPE_X11RDP:
+            s->type = SCP_SESSION_TYPE_X11RDP;
             break;
 
         case SCP_SESSION_TYPE_XORG:

@@ -56,7 +56,7 @@ scp_v0c_connect(struct SCP_CONNECTION *c, struct SCP_SESSION *s)
     {
         out_uint16_be(c->out_s, 0);
     }
-    else if (s->type == SCP_SESSION_TYPE_XRDP)
+    else if (s->type == SCP_SESSION_TYPE_X11RDP)
     {
         out_uint16_be(c->out_s, 10);
     }
@@ -217,7 +217,7 @@ scp_v0s_accept(struct SCP_CONNECTION *c, struct SCP_SESSION **s, int skipVchk)
         }
         else if (code == 10)
         {
-            scp_session_set_type(session, SCP_SESSION_TYPE_XRDP);
+            scp_session_set_type(session, SCP_SESSION_TYPE_X11RDP);
         }
         else if (code == 20)
         {

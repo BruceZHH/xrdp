@@ -109,8 +109,8 @@ session_get_bydata(const char *name, int width, int height, int bpp, int type,
             policy = (enum SESMAN_CFG_SESS_POLICY)
                      (policy | SESMAN_CFG_SESS_POLICY_D);
             break;
-        case SCP_SESSION_TYPE_XRDP: /* 1 */
-            type = SESMAN_SESSION_TYPE_XRDP; /* 1 */
+        case SCP_SESSION_TYPE_X11RDP: /* 1 */
+            type = SESMAN_SESSION_TYPE_X11RDP; /* 1 */
             break;
         case SCP_SESSION_TYPE_XORG:
             type = SESMAN_SESSION_TYPE_XORG;
@@ -744,7 +744,7 @@ session_start_fork(tbus data, tui8 type, struct SCP_CONNECTION *c,
                     log_message(LOG_LEVEL_INFO, "%s", dumpItemsToString(xserver_params, execvpparams, 2048));
                     g_execvp(xserver, pp1);
                 }
-                else if (type == SESMAN_SESSION_TYPE_XRDP)
+                else if (type == SESMAN_SESSION_TYPE_X11RDP)
                 {
                     xserver_params = list_create();
                     xserver_params->auto_free = 1;
